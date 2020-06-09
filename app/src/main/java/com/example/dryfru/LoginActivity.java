@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
     EditText emailId,Pass;
     Button btnsignIn;
-    TextView tvsignUp;
+    Button btnSignUp;
     FirebaseAuth mFirebaseAuth;
     ProgressBar progress;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -30,12 +30,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        emailId = findViewById(R.id.emailAddress);
-        Pass = findViewById(R.id.passwordText);
-        btnsignIn = findViewById(R.id.signUp);
-        tvsignUp = findViewById(R.id.signIn);
+        emailId = (EditText)findViewById(R.id.emailAddress);
+        Pass = (EditText) findViewById(R.id.passwordText);
+        btnsignIn = findViewById(R.id.signIn);
+        btnSignUp = findViewById(R.id.signUp);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
 
@@ -55,36 +60,52 @@ public class LoginActivity extends AppCompatActivity {
         btnsignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  progress.setVisibility(View.VISIBLE);
-                String email = emailId.getText().toString();
-                String pwd = Pass.getText().toString();
+                String email =(emailId.getText()).toString().trim();
+                String pwd = (Pass.getText()).toString().trim();
+
+
+
                 if (email.isEmpty()) {
                     emailId.setError("Please Enter Email Id");
                     emailId.requestFocus();
-                } else if (pwd.isEmpty()) {
+                }
+
+
+
+                else if (pwd.isEmpty()) {
                     Pass.setError("Please Enter Your Password");
                     Pass.requestFocus();
-                } else if (email.isEmpty() && pwd.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Fields Are Empty!", Toast.LENGTH_SHORT).show();
-                } else if (!(email.isEmpty() && pwd.isEmpty())) {
-                    mFirebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful())
-                                Toast.makeText(LoginActivity.this, "Login Error,Please Login Again", Toast.LENGTH_SHORT).show();
-                            else {
-                                Intent intToHome = new Intent(LoginActivity.this, HomeActivity.class);
-                                startActivity(intToHome);
-                            }
-                        }
-                    });
+                }
+
+
+                else if (email.isEmpty() && pwd.isEmpty()) {
+                    Toast.makeText( LoginActivity.this, "Fields Are Empty!", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+                else if (!(email.isEmpty() && pwd.isEmpty())) {
+                    progress.setVisibility(View.VISIBLE);
+                    mFirebaseAuth.signInWithEmailAndPassword(email, pwd)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText( LoginActivity.this, "Wrong Email Or Password", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                 } else
-                    Toast.makeText(LoginActivity.this, "Error Ocurred! ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( LoginActivity.this, "Error Ocurred! ", Toast.LENGTH_SHORT).show();
             }
         });
 
-
-        tvsignUp.setOnClickListener(new View.OnClickListener() {
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intSignUp = new Intent(LoginActivity.this, MainActivity.class);
@@ -92,10 +113,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-        @Override
-                protected void onStart() {
-            super.onStart();
-            mFirebaseAuth.addAuthStateListener(mAuthStateListener);
-        }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
     }
+}

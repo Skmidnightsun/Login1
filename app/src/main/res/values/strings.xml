@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Dryfru</string>
+    <string name="emailId">email</string>
+    <string name="Pass">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

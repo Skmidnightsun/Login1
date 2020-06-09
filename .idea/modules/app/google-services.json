@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "562868831796",
-    "firebase_url": "https://dryfru-39d09.firebaseio.com",
-    "project_id": "dryfru-39d09",
-    "storage_bucket": "dryfru-39d09.appspot.com"
+    "project_number": "594407605820",
+    "firebase_url": "https://dryfru-62bab.firebaseio.com",
+    "project_id": "dryfru-62bab",
+    "storage_bucket": "dryfru-62bab.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:562868831796:android:bf66883ebcea80763c2c61",
+        "mobilesdk_app_id": "1:594407605820:android:fa54b5048a9a8e2847e539",
         "android_client_info": {
           "package_name": "com.example.dryfru"
         }
       },
       "oauth_client": [
         {
-          "client_id": "562868831796-c5bij5261oj3ag7bqfjm0uh04puav5u1.apps.googleusercontent.com",
+          "client_id": "594407605820-kmr57v0qv2l2hhi4iq8nh3fvq8b6aj8v.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.dryfru",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "562868831796-vhr61d4b4g2l1ua9duaa0fn5q1vc9ugq.apps.googleusercontent.com",
+          "client_id": "594407605820-b6j3e7aolq7p8pml0ina71d9cia4nrrd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBlcSqim5O2F5G3Viv5CHTKtfFIvmUckbI"
+          "current_key": "AIzaSyCYx_7h1rNIEjaMCXG9-9QkFFw4qqcIauc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "562868831796-vhr61d4b4g2l1ua9duaa0fn5q1vc9ugq.apps.googleusercontent.com",
+              "client_id": "594407605820-b6j3e7aolq7p8pml0ina71d9cia4nrrd.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

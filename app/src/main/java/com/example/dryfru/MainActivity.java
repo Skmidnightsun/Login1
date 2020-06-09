@@ -12,35 +12,50 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dryfru.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     public EditText emailId,Pass;
     Button btnsignUp;
+    Button btnSignIn;
     TextView tvsignIn;
     FirebaseAuth mFirebaseAuth;
     ProgressBar progress;
 
+    FirebaseDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
+//HIDES THE ACTION BAR
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
+
+        setContentView(R.layout.activity_login);
         mFirebaseAuth=FirebaseAuth.getInstance();
         emailId=findViewById(R.id.emailAddress);
         Pass=findViewById(R.id.passwordText);
         btnsignUp=findViewById(R.id.signUp);
-        tvsignIn=findViewById(R.id.signIn);
+        btnSignIn=findViewById(R.id.signIn);
+        progress = findViewById(R.id.progressBar);
+
         btnsignUp.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 //progress.setVisibility(View.VISIBLE);
-                String email=emailId.getText().toString();
-                String pwd=Pass.getText().toString();
+                String email=(emailId.getText()).toString().trim();;
+                String pwd=(Pass.getText()).toString().trim();;
                 if(email.isEmpty()){
                     emailId.setError("Please Enter Email Id");
                     emailId.requestFocus();
@@ -74,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tvsignIn.setOnClickListener(new View.OnClickListener() {
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
